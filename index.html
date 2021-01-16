@@ -7,8 +7,75 @@
     <title>Platzi commerce</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <header>
+        <h3>Platzi commerce</h3>
+        <button class="cart">Carro (0)</button>
+        <div class="cart-content">
+          <div class="cart-content__product">
+            <img src="" alt="" />
+            <span>Producto - $500.000</span>
+          </div>
+          <div class="cart-content__product">
+            <img src="" alt="" />
+            <span>Producto - $500.000</span>
+          </div>
+        </div>
+      </header>
+      <main>
+        <section class="product">
+          <div class="product__thumbnails">
+            <div class="thum"></div>
+            <div class="thum"></div>
+          </div>
+          <div class="product__image">
+            <img src="" alt="" />
+          </div>
+        </section>
+        <section class="description">
+          <h4>Producto</h4>
+          <span class="badge new">Nuevo</span>
+          <span class="badge offert">Oferta</span>
+          <div class="description__status"></div>
+          <div class="description__price">$ 500.000</div>
+          <div class="description__content"></div>
+          <div class="discount">
+            <span>Codigo de descuento</span>
+            <input type="text" placeholder="Ingresa tu código" />
+          </div>
+        </section>
+      </main>
+    </div>
     <script src="https://unpkg.com/vue@next"></script>
-    <script></script>
+    <script>
+      const { createApp } = Vue;
+      const app = createApp({
+        data() {
+          return {
+            product: {
+              name: "Camar",
+              price: 400_000,
+              stock: 0,
+              contetn: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Perspiciatis doloremque corporis, ex vero quaerat odit accusantium
+                        nesciunt, nam quis rem ipsam molestiae, veniam sed nulla autem!
+                        Voluptas unde reiciendis necessitatibus.`,
+              images: [
+                {
+                  image: "../img/camara.jpg",
+                  thumbnail: "../img/camara-thum.jpg",
+                },
+                {
+                  image: "../img/camara-2.jpg",
+                  thumbnail: "../img/camara-2-thum.jpg",
+                },
+              ],
+            },
+          };
+        },
+      });
+
+      app.mount("#app");
+    </script>
   </body>
 </html>
