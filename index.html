@@ -14,11 +14,17 @@
         <div class="cart-content">
           <div class="cart-content__product">
             <img src="" alt="" />
-            <span>Producto - $500.000</span>
+            <span
+              >{{ product.name }} - S/.{{ new
+              Intl.NumberFormat("es-PE").format(product.price) }}</span
+            >
           </div>
           <div class="cart-content__product">
             <img src="" alt="" />
-            <span>Producto - $500.000</span>
+            <span
+              >{{ product.name }} - S/.{{ new
+              Intl.NumberFormat("es-PE").format(product.price) }}</span
+            >
           </div>
         </div>
       </header>
@@ -33,11 +39,16 @@
           </div>
         </section>
         <section class="description">
-          <h4>Producto</h4>
+          <h4>
+            {{ product.name.toUpperCase() }} {{ product.stock === 0 ? ":(" :
+            ":D" }}
+          </h4>
           <span class="badge new">Nuevo</span>
           <span class="badge offert">Oferta</span>
           <div class="description__status"></div>
-          <div class="description__price">$ 500.000</div>
+          <div class="description__price">
+            S/.{{ new Intl.NumberFormat("es-PE").format(product.price) }}
+          </div>
           <div class="description__content"></div>
           <div class="discount">
             <span>Codigo de descuento</span>
@@ -53,9 +64,9 @@
         data() {
           return {
             product: {
-              name: "Camar",
+              name: "Camara",
               price: 400_000,
-              stock: 0,
+              stock: 2,
               contetn: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Perspiciatis doloremque corporis, ex vero quaerat odit accusantium
                         nesciunt, nam quis rem ipsam molestiae, veniam sed nulla autem!
