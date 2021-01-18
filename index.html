@@ -11,7 +11,7 @@
       <header>
         <h3>Platzi commerce</h3>
         <button class="cart">Carro (0)</button>
-        <div class="cart-content">
+        <div class="cart-content" v-show="cartOpen">
           <div class="cart-content__product">
             <img
               v-bind:src="product.images[0].image"
@@ -57,9 +57,15 @@
             {{ product.name.toUpperCase() }} {{ product.stock === 0 ? ":(" :
             ":D" }}
           </h4>
-          <span class="badge new">Nuevo</span>
-          <span class="badge offert">Oferta</span>
-          <div class="description__status"></div>
+          <span class="badge new" v-if="product.new">Nuevo</span>
+          <span class="badge offer" v-if="product.offer">Oferta</span>
+          <div class="description__status" v-if="product.stock === 3">
+            Quedan pocas unidades
+          </div>
+          <div class="description__status" v-else-if="product.stock === 2">
+            El producto esta por terminarse
+          </div>
+          <div class="description__status" v-else>Ultima unidad disponible</div>
           <div class="description__price">
             S/.{{ new Intl.NumberFormat("es-PE").format(product.price) }}
           </div>
@@ -68,6 +74,7 @@
             <span>Codigo de descuento</span>
             <input type="text" placeholder="Ingresa tu código" />
           </div>
+          <button :disabled="product.stock === 0">Agregar al carrito</button>
         </section>
       </main>
     </div>
@@ -80,7 +87,7 @@
             product: {
               name: "Camara",
               price: 400_000,
-              stock: 2,
+              stock: 0,
               contetn: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Perspiciatis doloremque corporis, ex vero quaerat odit accusantium
                         nesciunt, nam quis rem ipsam molestiae, veniam sed nulla autem!
@@ -95,7 +102,10 @@
                   thumbnail: "./img/camara-2-thumb.jpg",
                 },
               ],
+              new: true,
+              offer: false,
             },
+            cartOpen: true,
             activeImage: 1,
           };
         },
